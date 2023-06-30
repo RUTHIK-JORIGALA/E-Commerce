@@ -1,11 +1,15 @@
 const filterReducer = (state, action) => {
-   
+    
     switch (action.type) {
       case "LOAD_FILTER_PRODUCTS":
+        let priceArr = action.payload.map((currEle)=>currEle.price)
+        let maxPrice = Math.max(...priceArr)
+        
         return {
           ...state,
           filter_products: [...action.payload],
           all_products: [...action.payload],
+          filters:{...state.filters, price:maxPrice, maxPrice}
           
         };
   
@@ -72,9 +76,8 @@ const filterReducer = (state, action) => {
         let {all_products} = state;
 
         let tempFilterProducts = all_products
-        const {text , category , company , color} = state.filters;
-        console.log(tempFilterProducts);
-        console.log(text);
+        const {text , category , company , color , price} = state.filters;
+        
         if(text){
           tempFilterProducts = tempFilterProducts.filter((currEle)=>{
             return currEle.name.toLowerCase().includes(text);
@@ -92,16 +95,37 @@ const filterReducer = (state, action) => {
           }) 
         }
         
-        if(color){
+        if(color !== "all"){
           tempFilterProducts = tempFilterProducts.filter((currEle)=>{
             return currEle.colors.includes(color);
           })
         }
-        console.log(tempFilterProducts);
+        if(price === 0){
+          tempFilterProducts = tempFilterProducts.filter((currEle)=> currEle.price === price)
+        } else {
+          tempFilterProducts = tempFilterProducts.filter(
+            (currEle)=>currEle.price < price
+          );
+        }
+        
         
         return {
           ...state,
           filter_products:tempFilterProducts
+        }
+      case  "CLEAR_FILTERS" :
+        return{
+          ...state,
+          filters:{
+            ...state.filters,
+            text:"",
+            category:"all",
+            company:"all",
+            color:"all",
+            // maxPrice:0,
+            price : state.filters.maxPrice,
+            // minPrice: state.filters.maxPrice,
+          }
         }
       default:
         return state;

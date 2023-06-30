@@ -14,6 +14,9 @@ const initialState = {
     category:"all",
     company:"all",
     color:"all",
+    price:0,
+    maxPrice:0,
+    minPrice:0,
   }
 };
 
@@ -32,10 +35,15 @@ export const FilterContextProvider = ({ children }) => {
   };
 
   const sorting = (event) => {
-    // let userValue = event.target.value;
-    // dispatch({ type: "GET_SORT_VALUE", payload: userValue });
+    
     dispatch({type:"GET_SORT_VALUE"})
   };
+
+  // to clear the filters
+
+  const clearFilters = () =>{
+    dispatch({type:"CLEAR_FILTERS"})
+  }
 
   const updateFilterValue =(event) =>{
     let name = event.target.name;
@@ -55,7 +63,7 @@ export const FilterContextProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ ...state, setGridView, setListView, sorting , updateFilterValue}}>
+      value={{ ...state, setGridView, setListView, sorting , updateFilterValue, clearFilters}}>
       {children}
     </FilterContext.Provider>
   );

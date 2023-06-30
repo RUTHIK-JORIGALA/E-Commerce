@@ -3,14 +3,10 @@ import styled from "styled-components";
 import Sort from "../../components/Sort";
 import FilterSection from "../../components/FilterSection";
 import ProductList from "../../components/ProductList";
-// import { useFilterContext } from "../../context/FilterContext";
 
 
 
 const Products = () => {
-// const {filter_products } = useFilterContext();
-// console.log("Products",filter_products);
-
 
 
 
@@ -37,6 +33,11 @@ const Products = () => {
 const Wrapper = styled.section`
   .grid-filter-column {
     grid-template-columns: 0.2fr 1fr;
+  }
+  .product-view--sort{
+    .main-product{
+      // overflow: hidden;
+    }
   }
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     .grid-filter-column {

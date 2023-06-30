@@ -19,12 +19,12 @@ const SingleProduct = () => {
   const {id} = useParams();
   // console.log(singleProduct);
   const {
-    id:alias,
+    // id:alias,
     name,
     company,
     price,
     description,
-    category,
+    // category,
     stock,
     stars,
     reviews,
@@ -33,7 +33,7 @@ const SingleProduct = () => {
 
   useEffect(()=>{
     getSingleProduct(`${API}/${id.slice(1)}`);
-  },[])
+  },[id])
   if(isSingleLoading){
     <h1>.....Loading</h1>
   }
@@ -70,10 +70,7 @@ const SingleProduct = () => {
                 <TbReplace className='warranty-icon'/>
                 <p>30 Days Replacement</p>
               </div>
-              {/* <div className="product-warranty-data">
-                <TbTruckDelivery className='warranty-icon'/>
-                <p>Raj Delivered</p>
-              </div> */}
+              
               <div className="product-warranty-data">
                 <MdSecurity className='warranty-icon'/>
                 <p>1 Year Warranty</p>

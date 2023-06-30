@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useFilterContext } from '../context/FilterContext';
-
+import { FaCheck } from 'react-icons/fa';
+import FormatPrice from '../helpers/FormatPrice'
 
 function FilterSection() {
 
   const {filters:{
-    text, category ,color
-  } , updateFilterValue , all_products} = useFilterContext();
+    text, category ,color, price , maxPrice, minPrice,
+  } , updateFilterValue , all_products, clearFilters} = useFilterContext();
   
   // Get unique values of each property
 
@@ -79,6 +80,18 @@ function FilterSection() {
 
         <div className="filter-color-style">
           {colorsData.map((curColor, index) => {
+            if(curColor === "all"){
+              return(<button
+                key={index}
+                type="button"
+                value={curColor}
+                name="color"
+                
+                className="color-all--style"
+                onClick={updateFilterValue}>
+                All
+              </button>)
+            }
             return (
               <button
                 key={index}
@@ -86,13 +99,31 @@ function FilterSection() {
                 value={curColor}
                 name="color"
                 style={{ backgroundColor: curColor }}
-                className="btnStyle"
+                className={color === curColor ? "btnStyle active":"btnStyle"}
                 onClick={updateFilterValue}>
-                {color === curColor ? "" : null}
+                {color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>
             );
           })}
         </div>
+      </div>
+      <div className="filter_price">
+          <h3>Price</h3>
+          <p>
+            <FormatPrice price={price}/>
+          </p>
+          <input type='range'
+            min={minPrice}
+            max={maxPrice}
+            name='price'
+            value={price}
+            onChange={updateFilterValue}
+          />
+      </div>
+      <div className="filter-clear">
+        <button className="btn" onClick={clearFilters}>
+          Clear Filters
+        </button>
       </div>
     </Wrapper>
   )
@@ -100,6 +131,7 @@ function FilterSection() {
 
 
 const Wrapper = styled.section`
+  
   padding: 5rem 0;
   display: flex;
   flex-direction: column;
