@@ -55,6 +55,14 @@ const Wrapper = styled.section`
         height: auto;
         border-radius:0.8rem;
     }
+@media(max-width:${({theme})=>theme.media.small_mobile}){
+    .grid-two-columns{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+}
 `;
 
 export default HeroSection

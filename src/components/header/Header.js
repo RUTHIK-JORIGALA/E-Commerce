@@ -5,7 +5,7 @@ import Nav from './Nav';
 const Header = () => {
   return (
     <MainHeader>
-      <NavLink className='title-icon'>
+      <NavLink to='/' className='title-icon'>
         <h3 className='mainTitle'>Vicky store</h3>
       </NavLink>
       <Nav/>

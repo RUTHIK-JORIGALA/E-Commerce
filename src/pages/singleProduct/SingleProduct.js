@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useProductContext } from '../../context/ProductContext'
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import PageNavigation from '../../components/PageNavigation';
+// import PageNavigation from '../../components/PageNavigation';
 import ProductImages from '../../components/ProductImages';
 import FormatPrice from '../../helpers/FormatPrice'
 import {TbTruckDelivery , TbReplace } from 'react-icons/tb'
@@ -39,7 +39,7 @@ const SingleProduct = () => {
   }
   return (
     <Wrapper>
-      <PageNavigation title={name}/>
+      {/* <PageNavigation title={name}/> */}
       <div className="container">
         <div className="grid grid-two-columns">
           {/* Product images */}
@@ -151,7 +151,12 @@ const Wrapper = styled.section`
       color: red;
     }
     }
-    
+  @media (max-width:${({theme})=>theme.media.mobile}){
+    .grid-two-columns{
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `;
 
 export default SingleProduct

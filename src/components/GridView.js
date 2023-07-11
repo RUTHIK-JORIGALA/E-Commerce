@@ -36,7 +36,7 @@ const Wrapper = styled.section`
       position:absolute;
       right:0;
       background:#fff;
-      width:auto;
+      width:auto;4
       top:30%;
       padding: 5px 10px;
       border-radius:2rem;
@@ -104,6 +104,26 @@ const Wrapper = styled.section`
       }
     }
   }
+  @media (max-width: ${({ theme }) => theme.media.mobile}){
+    padding: 0;
+    .grid-three-columns{
+      grid-template-columns: repeat(2,1fr);
+      width: 80%;
+      margin: auto;
+      padding: 0;
+    }
+      .grid{
+        gap:1rem;
+        }
+  }
+    @media (max-width: ${({ theme }) => theme.media.small_mobile}){
+      .grid-three-columns{
+      grid-template-columns: repeat(1,1fr);
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    }
 `;
 
 

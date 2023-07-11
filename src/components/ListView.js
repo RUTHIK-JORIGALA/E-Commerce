@@ -22,7 +22,7 @@ const ListView = ({products}) => {
                                 <FormatPrice price={price}/>
                             </p>
                             <p>{description.slice(0,99)}...</p>
-                            <NavLink to={`/singleproduct/${id}`}>
+                            <NavLink to={`/singleproduct/:${id}`}>
                                 <button className='btn'>Read More</button>
                             </NavLink>
                         </div>
@@ -109,6 +109,18 @@ const Wrapper = styled.section`
     .btn-main .btn:hover {
       color: #fff;
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}){
+    padding:0;
+    .container{
+      padding:0;
+      width: 95%;
+      margin: 5px;
+    }
+  }
+  @media (max-width ; ${({theme})=>theme.media.small_mobile}){
+
   }
 `;
 

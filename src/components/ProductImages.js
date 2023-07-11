@@ -1,16 +1,23 @@
-import React from 'react'
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const ProductImages = ({images = [{url:''}]}) => {
-  const [mainImage , setMainImage] = useState(images[0]);
-  // console.log(images);
+  
+  const [mainImage , setMainImage] = useState(images[0].url);
+ 
+  
   return (
     <Wrapper>
+      <div className="main-screen">
+        
+        <img src={mainImage.url} alt={mainImage.filename}/>
+      </div>
       <div className="grid grid-four-columns">
         {
           images.map((currEle , index)=>{
             return(
+              
               <figure>
                 <img src={currEle.url}
                 alt={currEle.filename}
@@ -23,9 +30,7 @@ const ProductImages = ({images = [{url:''}]}) => {
           })
         }
       </div>
-      <div className="main-screen">
-        <img src={mainImage.url} alt={mainImage.filename}/>
-      </div>
+      
     </Wrapper>
   )
 }

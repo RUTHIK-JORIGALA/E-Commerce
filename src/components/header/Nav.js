@@ -51,7 +51,20 @@ const Navbar = styled.nav`
   gap:4.8rem;
 
   .navbar-link{
-    text-decoration : none
+    text-decoration : none;
+    position: relative;
+  }
+  .active{
+    
+  }
+  .active::after{
+    position: absolute;
+    content:" ";
+    height: 2px;
+    width: 100%;
+    background-color: #7676e9;
+    bottom: -2px;
+    left: 0;
   }
   .cartTrollyLink{
     position:relative;

@@ -1,5 +1,6 @@
 
 const cartReducer =(state,action) =>{
+    console.log(state);
     if(action.type === "ADD_TO_CART"){
         let { id, color, amount, product } = action.payload;
         
@@ -13,11 +14,15 @@ const cartReducer =(state,action) =>{
             price:product.price,
             max:product.stock,
         };
+        // localStorage.setItem("shoppingCart",...state)
+        console.log(state);
         return{
             ...state,
-            cart:[...state.cart, cartProduct]
+            cart:[...state.cart, cartProduct],
         }
     }
+
+
     if (action.type === "REMOVE_ITEM") {
         let updatedCart = state.cart.filter(
           (curItem) => curItem.id !== action.payload
@@ -26,6 +31,13 @@ const cartReducer =(state,action) =>{
           ...state,
           cart: updatedCart,
         };
+    }
+
+    if(action.type === "CLEAR_CART"){
+        return{
+            ...state,
+            cart:[],
+        }
     }
     return state;
 }

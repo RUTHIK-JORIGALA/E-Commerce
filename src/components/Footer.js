@@ -79,7 +79,11 @@ const Wrapper = styled.section`
     .grid div:last-child{
       justify-self: end;
       align-self: center;
+      
     }
+    a{
+      color:#fff;
+      }
   }
 
   footer{
@@ -116,7 +120,38 @@ const Wrapper = styled.section`
       height: 0.1px;
     }
   }
-
+  @media(max-width:${({theme})=>theme.media.small_mobile}){
+    
+    .contact-short{
+      padding: 5px 10px;
+      max-width: 80vw;
+      h3{
+        font-size: 1.6rem;
+      }
+      .btn{
+        width: 10rem;
+        font-size: 1.2rem;
+        }
+      }
+    footer{
+      font-size: 1.3rem;
+      .container{
+        margin: 0;
+        h3{
+          font-size: 2.6rem;  
+          margin-bottom: 0.2rem;
+          margin-top: 1.2rem;
+        }
+      }
+      .grid{
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+        }
+      }
+    
+    
+  }
 `
 
 export default Footer
